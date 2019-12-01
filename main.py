@@ -1,11 +1,12 @@
 from urllib import parse
-from bs4 import BeautifulSoup
 from datetime import datetime
-import json
 
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
 import time
+import json
 
 url = "https://tv.naver.com/cjenm.producex101/playlists"
 
@@ -15,12 +16,15 @@ driver.get(url)
 found_element = True
 while found_element:
     try:
-        element = driver.find_element_by_xpath("//a[@class='bt_more']") # 더보기 div를 찾아서 클릭하는 것
-        print(element)
-        element.click()
-        time.sleep(3) # wait for page loading
+        element = driver.find_element_by_css_selector("a.bt_more") # 더보기 div를 찾아서 클릭하는 것
+        # print(element)
+        # element.click()
+        # driver.execute_script("arguments[0].click();", element)
+        actions = ActionChains(driver)
+        actions.move_to_element(element).click().perform()
+        # time.sleep(3) # wait for page loading
 
-    except Exception:
+    except NoSuchElementException:
         found_element = False
 
 html = driver.page_source
