@@ -1,4 +1,6 @@
 data = []
+names = ["김요한", "김우석", "송형준", "이은상", "남도현", "김민규", "구정모", "한승우", "이진혁", "손동표", "차준호", "송유빈", "이한결", "조승연", "함원진", "금동현", "황윤성", "강민희", "이세진", "토니"]
+
 video_lists = document.querySelectorAll("ul.item_list")
 for (let i = 0; i < video_lists.length; i++) {
     let video_list = video_lists[i]
